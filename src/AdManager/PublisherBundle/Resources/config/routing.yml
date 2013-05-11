@@ -1,3 +1,7 @@
 ad_manager_publisher_homepage:
-    pattern:  /ad-manager/publisher/{name}
-    defaults: { _controller: AdManagerPublisherBundle:Default:index }
+    pattern:  /ad-manager/publishers
+    defaults: { _controller: AdManagerPublisherBundle:Publisher:index }
+
+publisher_show:
+    pattern:  /ad-manager/publisher/show/{id}
+    defaults: { _controller: AdManagerPublisherBundle:Publisher:show }

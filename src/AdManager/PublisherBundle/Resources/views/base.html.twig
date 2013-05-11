@@ -1,0 +1,26 @@
+{# src/AdManager/PublisherBundle/Resources/views/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}Test Application{% endblock %}</title>
+	<style>
+	#sidebar {  float: left; }    
+	#content { float: left; }
+	</style>
+    </head>
+    <body>
+        <div id="sidebar">
+            {% block sidebar %}
+            <ul>
+                <li><a href="{{ path('_welcome') }}">Welcome</a></li>
+                <li><a href="/blog">Blog</a></li>
+            </ul>
+            {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>
