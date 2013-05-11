@@ -5,9 +5,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Test Application{% endblock %}</title>
 	<style>
-	#sidebar {  float: left; }    
-	#content { float: left; }
+	
 	</style>
+	{% block stylesheets %}
+            <link href="{{ asset('/css/main.css') }}" type="text/css" rel="stylesheet" />
+        {% endblock %}
     </head>
     <body>
         <div id="sidebar">
@@ -22,5 +24,8 @@
         <div id="content">
             {% block body %}{% endblock %}
         </div>
+	{% block javascripts %}
+            <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
+        {% endblock %}
     </body>
 </html>

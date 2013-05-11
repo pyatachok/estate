@@ -2,6 +2,13 @@
  {% extends 'AdManagerPublisherBundle::base.html.twig' %}
 
  {% block title %}Publishers{% endblock %}
+ 
+ {% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+ {% endblock %}
+ 
  {% block body %}
     {% for publisher in publishers %}
 	<h2><a href="{{ path('publisher_show', {'id' : publisher }) }}">{{ publisher }}</a></h2>
