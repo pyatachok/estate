@@ -4,6 +4,6 @@
  {% block title %}Publishers{% endblock %}
  {% block body %}
     {% for publisher in publishers %}
-	<h2>{{ publisher }}</h2>
+	<h2><a href="{{ path('publisher_show', {'id' : publisher }) }}">{{ publisher }}</a></h2>
     {% endfor %}
  {% endblock %}
