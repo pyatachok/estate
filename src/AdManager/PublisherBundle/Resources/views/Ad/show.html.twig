@@ -4,5 +4,5 @@
  {% block title %}Draw Ad {{ ad.id }}{% endblock %}
  {% block body %}
  <p>Created = {{ ad.CreationDate.format('Y-m-d H:i:s') }}!</p>
- <p>Publisher = {{ ad.PublisherId }}!</p>
+ <p>Publisher = {{ ad.getPublisher().getName() }}!</p>
  {% endblock %}
