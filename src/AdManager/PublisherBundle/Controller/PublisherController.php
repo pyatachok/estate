@@ -8,7 +8,14 @@ class PublisherController extends Controller
 {
     public function indexAction()
     {
-	$publishers = array(1 => 'First Publisher', 2 => 'Second Publisher');
+	$publishers = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Publisher')
+	    ->findAll();
+	
+	if (!$publishers) {
+	    throw $this->createNotFoundException('No publishers found');
+	}
+
         return $this->render('AdManagerPublisherBundle:Publisher:index.html.twig', array('publishers' => $publishers));
     }
     
