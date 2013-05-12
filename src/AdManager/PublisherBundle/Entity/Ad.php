@@ -31,7 +31,11 @@ class Ad
      */
     protected $publisher_id;
 
-    
+    /**
+     * @ORM\ManyToOne(targetEntity="Publisher", inversedBy="ads")
+     * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id")
+     */
+    protected $publisher;
 
     /**
      * Get id
@@ -89,5 +93,28 @@ class Ad
     public function getPublisherId()
     {
         return $this->publisher_id;
+    }
+
+    /**
+     * Set publisher
+     *
+     * @param \AdManager\PublisherBundle\Entity\Publisher $publisher
+     * @return Ad
+     */
+    public function setPublisher(\AdManager\PublisherBundle\Entity\Publisher $publisher = null)
+    {
+        $this->publisher = $publisher;
+    
+        return $this;
+    }
+
+    /**
+     * Get publisher
+     *
+     * @return \AdManager\PublisherBundle\Entity\Publisher 
+     */
+    public function getPublisher()
+    {
+        return $this->publisher;
     }
 }

@@ -4,6 +4,7 @@ namespace AdManager\PublisherBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -26,7 +27,19 @@ class Publisher
     protected $name;
 
     
-
+    /**
+     * @ORM\OneToMany(targetEntity="Ad", mappedBy="publisher")
+     */
+    protected $ads;
+    
+    public function __construct()
+    {
+        $this->ads = new ArrayCollection();
+    }
+    
+    
+    
+    
     /**
      * Get id
      *
@@ -58,5 +71,38 @@ class Publisher
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add ads
+     *
+     * @param \AdManager\PublisherBundle\Entity\Ad $ads
+     * @return Publisher
+     */
+    public function addAd(\AdManager\PublisherBundle\Entity\Ad $ads)
+    {
+        $this->ads[] = $ads;
+    
+        return $this;
+    }
+
+    /**
+     * Remove ads
+     *
+     * @param \AdManager\PublisherBundle\Entity\Ad $ads
+     */
+    public function removeAd(\AdManager\PublisherBundle\Entity\Ad $ads)
+    {
+        $this->ads->removeElement($ads);
+    }
+
+    /**
+     * Get ads
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAds()
+    {
+        return $this->ads;
     }
 }
