@@ -4,4 +4,10 @@
  {% block title %}Draw Publisher {{ publisher.id }}{% endblock %}
  {% block body %}
      Publisher Name = {{ publisher.name }}!
+	{% for ad in publisher.ads %}
+     <div class='ad-details'>
+	    {% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
+     </div>
+	{% endfor %}
+     
  {% endblock %}

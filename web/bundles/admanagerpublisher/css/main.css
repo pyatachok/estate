@@ -1,2 +1,5 @@
 #sidebar {  float: left; }    
 #content { float: left; }
+.ad-details {
+    border: 1px #6c6159 solid;
+}
