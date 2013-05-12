@@ -5,3 +5,10 @@ ad_manager_publisher_homepage:
 publisher_show:
     pattern:  /ad-manager/publisher/show/{id}
     defaults: { _controller: AdManagerPublisherBundle:Publisher:show }
+
+ad_manager_ad_homepage:
+    pattern:  /ad-manager/ads
+    defaults: { _controller: AdManagerPublisherBundle:Ad:index }
+ad_show:
+    pattern:  /ad-manager/ad/show/{id}
+    defaults: { _controller: AdManagerPublisherBundle:Ad:show }

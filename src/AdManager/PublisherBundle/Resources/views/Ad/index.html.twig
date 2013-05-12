@@ -1,0 +1,18 @@
+ {# src/AdManager/PublisherBundle/Resources/views/Ad/index.html.twig #}
+ {% extends 'AdManagerPublisherBundle::base.html.twig' %}
+
+ {% block title %}Ads{% endblock %}
+ 
+ {% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+ {% endblock %}
+ 
+ {% block body %}
+    {% for ad in ads %}
+	<h2><a href="{{ path('ad_show', {'id' : ad.id }) }}">{{ ad.CreationDate.format('Y-m-d H:i:s')}}</a></h2>
+	<p>Ad Id is {{ ad.id }}</p>
+	<p>Publisher is {{ ad.PublisherId }}</p>
+    {% endfor %}
+ {% endblock %}
