@@ -34,4 +34,9 @@ class PublisherController extends Controller
     }
     
     
+    public function createAction()
+    {
+	
+    }
+    
 }
