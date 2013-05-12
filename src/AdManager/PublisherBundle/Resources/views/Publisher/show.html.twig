@@ -1,7 +1,7 @@
  {# src/AdManager/PublisherBundle/Resources/views/Publisher/index.html.twig #}
  {% extends 'AdManagerPublisherBundle::base.html.twig' %}
 
- {% block title %}Draw Publisher{% endblock %}
+ {% block title %}Draw Publisher {{ publisher.id }}{% endblock %}
  {% block body %}
-     Publisher {{ id }}!
+     Publisher Name = {{ publisher.name }}!
  {% endblock %}

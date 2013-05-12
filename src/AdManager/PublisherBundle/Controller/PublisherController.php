@@ -21,7 +21,16 @@ class PublisherController extends Controller
     
     public function showAction($id)
     {
-        return $this->render('AdManagerPublisherBundle:Publisher:show.html.twig', array('id' => $id));
+	$publisher = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Publisher')
+	    ->find($id);
+	
+	if (!$publisher) {
+	    throw $this->createNotFoundException('No publisher found for id = '. $id);
+	}
+	
+	
+        return $this->render('AdManagerPublisherBundle:Publisher:show.html.twig', array('publisher' => $publisher));
     }
     
     
