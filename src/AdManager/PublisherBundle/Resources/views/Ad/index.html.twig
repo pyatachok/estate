@@ -12,7 +12,8 @@
  {% block body %}
     {% for ad in ads %}
 	<h2><a href="{{ path('ad_show', {'id' : ad.id }) }}">{{ ad.CreationDate.format('Y-m-d H:i:s')}}</a></h2>
-	<p>Ad Id is {{ ad.id }}</p>
-	<p>Publisher is {{ ad.getPublisher().name }}</p>
+	 <div class='ad-details'>
+		{% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
+	 </div>
     {% endfor %}
  {% endblock %}
