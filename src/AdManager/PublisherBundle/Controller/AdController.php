@@ -3,7 +3,11 @@
 namespace AdManager\PublisherBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
+use AdManager\PublisherBundle\Entity\Ad;
+use AdManager\PublisherBundle\Entity\Publisher;
+use AdManager\PublisherBundle\Form\AdType;
 class AdController extends Controller
 {
     public function indexAction()
@@ -34,9 +38,35 @@ class AdController extends Controller
     }
     
     
-    public function createAction()
+    public function addAction(Request $request)
     {
+	$ad = new Ad();
+	$form = $this->createForm(new AdType(), $ad);
 	
+	if ($request->getMethod() == 'POST') {
+	    $form->bindRequest($request);
+
+	    if ($form->isValid()) {
+		// выполняем прочие действие, например, сохраняем задачу в базе данных
+		
+		$ad = $form->getData();
+		$publisher = $this->getDoctrine()
+		    ->getRepository('AdManagerPublisherBundle:Publisher')
+		    ->find($ad->getPublisherId());
+		$ad->setPublisher($publisher);
+		
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($ad);
+		$em->flush();
+		
+		return $this->redirect($this->generateUrl('ad_manager_ad_homepage'));
+	    }
+	}
+	
+	
+	return $this->render('AdManagerPublisherBundle:Ad:add.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
     
 }

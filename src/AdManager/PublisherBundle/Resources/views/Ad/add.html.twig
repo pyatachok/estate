@@ -1,0 +1,22 @@
+ {# src/AdManager/PublisherBundle/Resources/views/Publisher/add.html.twig #}
+ {% extends 'AdManagerPublisherBundle::base.html.twig' %}
+
+ {% block title %}New Ad{% endblock %}
+ 
+ {% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+ {% endblock %}
+ {% block body %}
+    <form action="{{ path('add_ad') }}" method="post" {{ form_enctype(form) }}>
+	{{ form_errors(form) }}
+
+	{{ form_row(form.creation_date) }}
+	{{ form_row(form.publisher_id) }}
+
+	{{ form_rest(form) }}
+
+	<input type="submit" />
+    </form>
+ {% endblock %}

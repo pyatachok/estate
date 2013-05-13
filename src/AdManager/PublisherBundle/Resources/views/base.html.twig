@@ -16,7 +16,13 @@
             {% block sidebar %}
             <ul>
                 <li><a href="{{ path('ad_manager_publisher_homepage') }}">Publishers</a></li>
+		<ul>
+		    <li><a href="{{ path('add_publisher') }}">Add Publisher</a></li>
+		</ul>
                 <li><a href="{{ path('ad_manager_ad_homepage') }}">Ads</a></li>
+		<ul>
+		    <li><a href="{{ path('add_ad') }}">Add Ad</a></li>
+		</ul>
             </ul>
             {% endblock %}
         </div>

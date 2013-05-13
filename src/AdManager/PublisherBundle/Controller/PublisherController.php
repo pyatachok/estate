@@ -3,9 +3,10 @@
 namespace AdManager\PublisherBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+
 use AdManager\PublisherBundle\Entity\Publisher;
 use AdManager\PublisherBundle\Form\PublisherType;
-use Symfony\Component\HttpFoundation\Request;
 
 class PublisherController extends Controller
 {

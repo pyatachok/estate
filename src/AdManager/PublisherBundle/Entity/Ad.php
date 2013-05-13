@@ -4,6 +4,9 @@ namespace AdManager\PublisherBundle\Entity;
 
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * @ORM\Entity
@@ -116,5 +119,14 @@ class Ad
     public function getPublisher()
     {
         return $this->publisher;
+    }
+    
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('publisher_id', new NotBlank());
+
+        $metadata->addPropertyConstraint('creation_date', new NotBlank());
+        $metadata->addPropertyConstraint('creation_date', new Type('\DateTime'));
     }
 }
