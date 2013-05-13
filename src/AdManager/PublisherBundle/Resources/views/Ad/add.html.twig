@@ -9,6 +9,7 @@
     <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
  {% endblock %}
  {% block body %}
+    {% form_theme form 'AdManagerPublisherBundle:Form:fields.html.twig' %}
     <form action="{{ path('add_ad') }}" method="post" {{ form_enctype(form) }}>
 	{{ form_errors(form) }}
 
