@@ -5,6 +5,8 @@ namespace AdManager\PublisherBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity
@@ -104,5 +106,14 @@ class Publisher
     public function getAds()
     {
         return $this->ads;
+    }
+    
+    
+    
+    
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('name', new NotBlank());
+
     }
 }

@@ -47,8 +47,11 @@ class PublisherController extends Controller
 
 	    if ($form->isValid()) {
 		// выполняем прочие действие, например, сохраняем задачу в базе данных
-
 		
+		$publisher = $form->getData();
+		$em = $this->getDoctrine()->getEntityManager();
+		$em->persist($publisher);
+		$em->flush();
 		
 		
 		return $this->redirect($this->generateUrl('ad_manager_publisher_homepage'));
