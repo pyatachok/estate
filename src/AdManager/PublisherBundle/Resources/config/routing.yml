@@ -12,3 +12,8 @@ ad_manager_ad_homepage:
 ad_show:
     pattern:  /ad-manager/ad/show/{id}
     defaults: { _controller: AdManagerPublisherBundle:Ad:show }
+    
+add_publisher:
+    pattern:  /ad-manager/publisher/add
+    defaults: { _controller: AdManagerPublisherBundle:Publisher:add }
+  

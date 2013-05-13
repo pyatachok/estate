@@ -3,6 +3,9 @@
 namespace AdManager\PublisherBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AdManager\PublisherBundle\Entity\Publisher;
+use AdManager\PublisherBundle\Form\PublisherType;
+use Symfony\Component\HttpFoundation\Request;
 
 class PublisherController extends Controller
 {
@@ -34,9 +37,28 @@ class PublisherController extends Controller
     }
     
     
-    public function createAction()
+    public function addAction(Request $request)
     {
+	$publisher = new Publisher();
+	$form = $this->createForm(new PublisherType(), $publisher);
 	
+	if ($request->getMethod() == 'POST') {
+	    $form->bindRequest($request);
+
+	    if ($form->isValid()) {
+		// выполняем прочие действие, например, сохраняем задачу в базе данных
+
+		
+		
+		
+		return $this->redirect($this->generateUrl('ad_manager_publisher_homepage'));
+	    }
+	}
+	
+	
+	return $this->render('AdManagerPublisherBundle:Publisher:add.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
     
 }
