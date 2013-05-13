@@ -50,10 +50,10 @@ class AdController extends Controller
 		// выполняем прочие действие, например, сохраняем задачу в базе данных
 		
 		$ad = $form->getData();
-		$publisher = $this->getDoctrine()
-		    ->getRepository('AdManagerPublisherBundle:Publisher')
-		    ->find($ad->getPublisherId());
-		$ad->setPublisher($publisher);
+//		$publisher = $this->getDoctrine()
+//		    ->getRepository('AdManagerPublisherBundle:Publisher')
+//		    ->find($ad->getPublisherId());
+//		$ad->setPublisher($publisher);
 		
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($ad);

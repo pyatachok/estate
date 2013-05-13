@@ -124,7 +124,7 @@ class Ad
     
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('publisher_id', new NotBlank());
+        $metadata->addPropertyConstraint('publisher', new NotBlank());
 
         $metadata->addPropertyConstraint('creation_date', new NotBlank());
         $metadata->addPropertyConstraint('creation_date', new Type('\DateTime'));
