@@ -21,3 +21,14 @@ add_ad:
     pattern:  /ad-manager/ad/add
     defaults: { _controller: AdManagerPublisherBundle:Ad:add }
   
+ad_manager_field_homepage:
+    pattern:  /ad-manager/fields
+    defaults: { _controller: AdManagerPublisherBundle:Field:index }
+field_show:
+    pattern:  /ad-manager/field/show/{id}
+    defaults: { _controller: AdManagerPublisherBundle:Field:show }
+    
+add_field:
+    pattern:  /ad-manager/field/add
+    defaults: { _controller: AdManagerPublisherBundle:Field:add }
+  

@@ -1,0 +1,16 @@
+ {# src/AdManager/PublisherBundle/Resources/views/Field/index.html.twig #}
+ {% extends 'AdManagerPublisherBundle::base.html.twig' %}
+
+ {% block title %}Fields{% endblock %}
+ 
+ {% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+ {% endblock %}
+ 
+ {% block body %}
+    {% for field in fields %}
+	<h2><a href="{{ path('field_show', {'id' : field.id }) }}">{{ field.name }}</a></h2>
+    {% endfor %}
+ {% endblock %}

@@ -1,5 +1,5 @@
 <?php
-// src/AdManager/PublisherBundle/Entity/Publisher.php
+// src/AdManager/PublisherBundle/Entity/Field.php
 namespace AdManager\PublisherBundle\Entity;
 
 
@@ -10,9 +10,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="publisher")
+ * @ORM\Table(name="field")
  */
-class Publisher
+class Field
 {
     
     /**
@@ -28,19 +28,6 @@ class Publisher
      */
     protected $name;
 
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Ad", mappedBy="publisher")
-     */
-    protected $ads;
-    
-    public function __construct()
-    {
-        $this->ads = new ArrayCollection();
-    }
-    
-    
-    
     
     /**
      * Get id
@@ -74,42 +61,6 @@ class Publisher
     {
         return $this->name;
     }
-    
-    /**
-     * Add ads
-     *
-     * @param \AdManager\PublisherBundle\Entity\Ad $ads
-     * @return Publisher
-     */
-    public function addAd(\AdManager\PublisherBundle\Entity\Ad $ads)
-    {
-        $this->ads[] = $ads;
-    
-        return $this;
-    }
-
-    /**
-     * Remove ads
-     *
-     * @param \AdManager\PublisherBundle\Entity\Ad $ads
-     */
-    public function removeAd(\AdManager\PublisherBundle\Entity\Ad $ads)
-    {
-        $this->ads->removeElement($ads);
-    }
-
-    /**
-     * Get ads
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAds()
-    {
-        return $this->ads;
-    }
-    
-    
-    
     
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {

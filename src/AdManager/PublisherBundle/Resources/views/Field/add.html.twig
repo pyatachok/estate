@@ -1,0 +1,21 @@
+ {# src/AdManager/PublisherBundle/Resources/views/Field/add.html.twig #}
+ {% extends 'AdManagerPublisherBundle::base.html.twig' %}
+
+ {% block title %}New Field{% endblock %}
+ 
+ {% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+ {% endblock %}
+ {% block body %}
+    <form action="{{ path('add_field') }}" method="post" {{ form_enctype(form) }}>
+	{{ form_errors(form) }}
+
+	{{ form_row(form.name) }}
+
+	{{ form_rest(form) }}
+
+	<input type="submit" />
+    </form>
+ {% endblock %}
