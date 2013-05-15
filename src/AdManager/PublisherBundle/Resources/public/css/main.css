@@ -1,5 +1,8 @@
 #sidebar {  float: left; }    
 #content { float: left; }
-.ad-details {
+.ad-details, .field-details {
     border: 1px #6c6159 solid;
+}
+.related-fields{
+    margin-left: 20px;
 }

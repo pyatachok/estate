@@ -28,7 +28,7 @@ class FieldController extends Controller
 	$field = $this->getDoctrine()
 	    ->getRepository('AdManagerPublisherBundle:Field')
 	    ->find($id);
-	
+
 	if (!$field) {
 	    throw $this->createNotFoundException('No fields found for id = '. $id);
 	}

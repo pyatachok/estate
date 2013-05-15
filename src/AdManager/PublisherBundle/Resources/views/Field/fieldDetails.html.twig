@@ -1,0 +1,9 @@
+<p>
+{% if (field  is defined) and (field  is not empty) %}
+ Field Name = {{ field.name }}!
+{% endif %}
+{% if (related_field  is defined) and (related_field  is not empty)  %}
+ Field Name = <a href="{{ path('field_show', {'id' : related_field.id }) }}">{{ related_field.name }}</a>
+
+{% endif %}
+</p>

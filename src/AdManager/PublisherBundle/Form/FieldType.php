@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormBuilderInterface;
 
+
 class FieldType extends AbstractType
 {
  
@@ -16,6 +17,25 @@ class FieldType extends AbstractType
 	    'empty_data' => FALSE,
 	    'max_length' => 255,
 	    ));
+	
+//	$builder->add('users', 'entity', array(
+//	    'class' => 'AdaptiveUserBundle:User',
+//	    'expanded' => true,
+//	    'multiple' => true,
+//	    'query_builder' => function(EntityRepository $er) {
+//		return $er->createQueryBuilder('u')
+//		    ->orderBy('u.username', 'ASC');
+//	    },
+//	));
+	
+    $builder->add('related_fields', 'entity', array(
+	'class' => 'AdManagerPublisherBundle:Field',
+	'property' => 'name',
+	'multiple' => true,
+    ));
+
+	    
+	    
     }
     
     public function getName()
