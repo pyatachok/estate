@@ -13,11 +13,12 @@ class AdType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('creation_date', 'date', array(
-	    'widget' => 'choice',
+	    'widget' => 'single_text',
 	    'input'  => 'datetime',
 	    'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 	    'required' => true, 
-	    'format' => 'yyyy/MM/dd',
+	    'format' => 'yyyy-MM-dd HH:mm:ss',
+	    'data' => new \DateTime("now")
 	    ));
 	$builder->add('publisher', 'entity', array(
 	    'class' => 'AdManagerPublisherBundle:Publisher',

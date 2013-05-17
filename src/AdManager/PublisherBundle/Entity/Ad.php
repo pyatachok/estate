@@ -7,6 +7,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Type;
+use Doctrine\Common\Collections\ArrayCollection;
+
+
+use AdManager\PublisherBundle\Entity\AdFieldValue;
+use AdManager\PublisherBundle\Entity\Publisher;
 
 /**
  * @ORM\Entity
@@ -40,6 +45,17 @@ class Ad
      */
     protected $publisher;
 
+    
+    /**
+     * @ORM\OneToMany(targetEntity="AdFieldValue", mappedBy="ad")
+     */
+    protected $field_values;
+    
+    public function __construct()
+    {
+        $this->field_values = new ArrayCollection();
+    }
+    
     /**
      * Get id
      *
