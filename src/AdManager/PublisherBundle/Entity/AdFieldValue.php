@@ -66,4 +66,119 @@ class AdFieldValue
         return $this->id;
     }
 
+
+    /**
+     * Set value
+     *
+     * @param string $value
+     * @return AdFieldValue
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    /**
+     * Get value
+     *
+     * @return string 
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Set field_id
+     *
+     * @param integer $fieldId
+     * @return AdFieldValue
+     */
+    public function setFieldId($fieldId)
+    {
+        $this->field_id = $fieldId;
+
+        return $this;
+    }
+
+    /**
+     * Get field_id
+     *
+     * @return integer 
+     */
+    public function getFieldId()
+    {
+        return $this->field_id;
+    }
+
+    /**
+     * Set ad_id
+     *
+     * @param integer $adId
+     * @return AdFieldValue
+     */
+    public function setAdId($adId)
+    {
+        $this->ad_id = $adId;
+
+        return $this;
+    }
+
+    /**
+     * Get ad_id
+     *
+     * @return integer 
+     */
+    public function getAdId()
+    {
+        return $this->ad_id;
+    }
+
+    /**
+     * Set field
+     *
+     * @param \AdManager\PublisherBundle\Entity\Field $field
+     * @return AdFieldValue
+     */
+    public function setField(\AdManager\PublisherBundle\Entity\Field $field = null)
+    {
+        $this->field = $field;
+
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return \AdManager\PublisherBundle\Entity\Field 
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
+     * Set ad
+     *
+     * @param \AdManager\PublisherBundle\Entity\Ad $ad
+     * @return AdFieldValue
+     */
+    public function setAd(\AdManager\PublisherBundle\Entity\Ad $ad = null)
+    {
+        $this->ad = $ad;
+
+        return $this;
+    }
+
+    /**
+     * Get ad
+     *
+     * @return \AdManager\PublisherBundle\Entity\Ad 
+     */
+    public function getAd()
+    {
+        return $this->ad;
+    }
 }

@@ -145,4 +145,37 @@ class Ad
         $metadata->addPropertyConstraint('creation_date', new NotBlank());
         $metadata->addPropertyConstraint('creation_date', new Type('\DateTime'));
     }
+
+    /**
+     * Add field_values
+     *
+     * @param \AdManager\PublisherBundle\Entity\AdFieldValue $fieldValues
+     * @return Ad
+     */
+    public function addFieldValue(\AdManager\PublisherBundle\Entity\AdFieldValue $fieldValues)
+    {
+        $this->field_values[] = $fieldValues;
+
+        return $this;
+    }
+
+    /**
+     * Remove field_values
+     *
+     * @param \AdManager\PublisherBundle\Entity\AdFieldValue $fieldValues
+     */
+    public function removeFieldValue(\AdManager\PublisherBundle\Entity\AdFieldValue $fieldValues)
+    {
+        $this->field_values->removeElement($fieldValues);
+    }
+
+    /**
+     * Get field_values
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getFieldValues()
+    {
+        return $this->field_values;
+    }
 }

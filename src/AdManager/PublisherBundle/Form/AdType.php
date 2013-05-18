@@ -5,7 +5,9 @@ namespace AdManager\PublisherBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\FormBuilderInterface;
+
 use AdManager\PublisherBundle\Entity\Publisher;
+use AdManager\PublisherBundle\Form\AdFieldValueType;
 
 class AdType extends AbstractType
 {
@@ -24,11 +26,13 @@ class AdType extends AbstractType
 	    'class' => 'AdManagerPublisherBundle:Publisher',
 	    'property' => 'name',
 	));
-//        $builder->add('publisher_id', 'text', array(
-//	    'required' => true, 
-//	    'empty_data' => FALSE,
-//	    'max_length' => 255,
-//	    ));
+
+	 $builder->add('field_values', 'collection', array(
+	    'type'         => new AdFieldValueType(),
+	    'allow_add'    => true,
+	    'by_reference' => false,
+	));
+	
     }
     
     public function getName()

@@ -165,4 +165,37 @@ class Field
     {
         $this->relatedFields->removeElement($relatedFields);
     }
+
+    /**
+     * Add values
+     *
+     * @param \AdManager\PublisherBundle\Entity\AdFieldValue $values
+     * @return Field
+     */
+    public function addValue(\AdManager\PublisherBundle\Entity\AdFieldValue $values)
+    {
+        $this->values[] = $values;
+
+        return $this;
+    }
+
+    /**
+     * Remove values
+     *
+     * @param \AdManager\PublisherBundle\Entity\AdFieldValue $values
+     */
+    public function removeValue(\AdManager\PublisherBundle\Entity\AdFieldValue $values)
+    {
+        $this->values->removeElement($values);
+    }
+
+    /**
+     * Get values
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
 }
