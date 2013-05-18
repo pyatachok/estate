@@ -3,11 +3,13 @@
 
  {% block title %}Draw Publisher {{ publisher.id }}{% endblock %}
  {% block body %}
-     Publisher Name = {{ publisher.name }}!
-	{% for ad in publisher.ads %}
-     <div class='ad-details'>
+ <p class='last'>
+    Publisher Name = {{ publisher.name }}!
+ </p>
+    {% for ad in publisher.ads %}
+	<div class='ad-details span4 offset1'>
 	    {% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
-     </div>
-	{% endfor %}
+	</div>
+    {% endfor %}
      
  {% endblock %}

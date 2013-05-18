@@ -4,38 +4,44 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>{% block title %}Test Application{% endblock %}</title>
-	<style>
-	
-	</style>
+
 	{% block stylesheets %}
-            <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+	<link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
         {% endblock %}
     </head>
     <body>
-        <div id="sidebar">
+	<div class='container'>
+	<div class='row'>
+	    <div id="sidebar" class="span3">
             {% block sidebar %}
-            <ul>
-                <li><a href="{{ path('ad_manager_publisher_homepage') }}">Publishers</a></li>
 		<ul>
-		    <li><a href="{{ path('add_publisher') }}">Add Publisher</a></li>
+		    <li><a href="{{ path('ad_manager_publisher_homepage') }}">Publishers</a></li>
+		    <ul>
+			<li><a href="{{ path('add_publisher') }}">Add Publisher</a></li>
+		    </ul>
+		    <li><a href="{{ path('ad_manager_ad_homepage') }}">Ads</a></li>
+		    <ul>
+			<li><a href="{{ path('add_ad') }}">Add Ad</a></li>
+		    </ul>
+		    <li><a href="{{ path('ad_manager_field_homepage') }}">Fields</a></li>
+		    <ul>
+			<li><a href="{{ path('add_field') }}">Add Field</a></li>
+		    </ul>
 		</ul>
-                <li><a href="{{ path('ad_manager_ad_homepage') }}">Ads</a></li>
-		<ul>
-		    <li><a href="{{ path('add_ad') }}">Add Ad</a></li>
-		</ul>
-                <li><a href="{{ path('ad_manager_field_homepage') }}">Fields</a></li>
-		<ul>
-		    <li><a href="{{ path('add_field') }}">Add Field</a></li>
-		</ul>
-            </ul>
             {% endblock %}
-        </div>
+	    </div>
 
-        <div id="content">
-            {% block body %}{% endblock %}
-        </div>
+	    <div id="content" class="span9">
+		    {% block body %}{% endblock %}
+	    </div>
 	{% block javascripts %}
-            <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
+	    <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
+	    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	    <script>window.jQuery || document.write('<script src="{{ asset('js/jquery.js') }}"><\/script>')</script>
+	    <script src="{{ asset('js/bootstrap.js') }}"></script>
         {% endblock %}
+	</div>
+	</div>
     </body>
-</html>
+	</html>

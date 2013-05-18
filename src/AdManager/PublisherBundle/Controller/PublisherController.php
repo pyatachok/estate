@@ -64,5 +64,5 @@ class PublisherController extends Controller
             'form' => $form->createView(),
         ));
     }
-    
+
 }
