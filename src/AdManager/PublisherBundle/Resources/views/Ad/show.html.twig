@@ -4,6 +4,11 @@
  {% block title %}Draw Ad {{ ad.id }}{% endblock %}
  {% block body %}
  <div class='ad-details'>
-	{% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
+    {% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
+    {% for field in ad.FieldValues %}
+    <div class='ad-details span4 offset1'>
+	{{ field.field.name }} : {{ field.value }}
+    </div>
+    {% endfor %}
  </div>
  {% endblock %}
