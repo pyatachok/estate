@@ -18,4 +18,21 @@ class PublisherRepository extends EntityRepository
             ->createQuery('SELECT p FROM AdManagerPublisherBundle:Publisher p ORDER BY p.name ASC')
             ->getResult();
     }
+    
+    public function markAsDeleted()
+    {
+	echo '<pre>';
+	var_export($this->getId());
+	echo '</pre>';
+
+
+
+
+
+//        return $this->getEntityManager()
+//            ->createQuery('UPDATE p FROM AdManagerPublisherBundle:Publisher p SET()')
+//            ->getResult();
+    }
+    
+    
 }

@@ -66,4 +66,18 @@ class PublisherController extends Controller
         ));
     }
 
+    
+    public function deleteAction($id)
+    {
+	$publisher = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Publisher')
+	    ->markAsDeleted();
+	
+	if (!$publisher) {
+	    throw $this->createNotFoundException('No publisher found for id = '. $id);
+	}
+	
+	
+        return $this->render('AdManagerPublisherBundle:Publisher:show.html.twig', array('publisher' => $publisher));
+    }
 }

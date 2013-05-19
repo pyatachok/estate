@@ -8,7 +8,27 @@
  {% endblock %}
  
  {% block body %}
-    {% for publisher in publishers %}
-	<h2><a href="{{ path('publisher_show', {'id' : publisher.id }) }}">{{ publisher.name }}</a></h2>
-    {% endfor %}
+    <table class="table table-hover">
+	<thead>
+	    <tr>
+		<th>#</th>
+		<th>Publisher</th>
+		<th>Is Deleted</th>
+		<th>Actions</th>
+	    </tr>
+	</thead>
+	<tbody>
+	{% for publisher in publishers %}
+	<tr>
+	    <td>{{publisher.id}}</td>
+	    <td><a href="{{ path('publisher_show', {'id' : publisher.id }) }}">{{ publisher.name }}</a></td>
+	    <td>{% if publisher.deleted == 1 %}Yes{%else%}No{% endif %}</td>
+	    <td>
+		<a class="btn btn-small" href="{{ path('publisher_show', {'id' : publisher.id }) }}">Edit</a>
+		<a class="btn btn-small" href="{{ path('publisher_delete', {'id' : publisher.id }) }}">Delete</a>
+	    </td>
+	</tr>
+	{% endfor %}
+	</tbody>
+    </table>
  {% endblock %}

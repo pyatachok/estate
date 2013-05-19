@@ -15,17 +15,17 @@
 	<div class='row'>
 	    <div id="sidebar" class="span3">
             {% block sidebar %}
-		<ul>
-		    <li><a href="{{ path('ad_manager_publisher_homepage') }}">Publishers</a></li>
-		    <ul>
+		<ul class="nav nav-list">
+		    <li><a href="{{ path('ad_manager_publisher_homepage') }}"><i class="icon-user"></i> Publishers</a></li>
+		    <ul class="nav nav-list">
 			<li><a href="{{ path('add_publisher') }}">Add Publisher</a></li>
 		    </ul>
-		    <li><a href="{{ path('ad_manager_ad_homepage') }}">Ads</a></li>
-		    <ul>
+		    <li><a href="{{ path('ad_manager_ad_homepage') }}"><i class="icon-list-alt"></i> Ads</a></li>
+		    <ul class="nav nav-list">
 			<li><a href="{{ path('add_ad') }}">Add Ad</a></li>
 		    </ul>
-		    <li><a href="{{ path('ad_manager_field_homepage') }}">Fields</a></li>
-		    <ul>
+		    <li><a href="{{ path('ad_manager_field_homepage') }}"><i class="icon-pencil"></i> Fields</a></li>
+		    <ul class="nav nav-list">
 			<li><a href="{{ path('add_field') }}">Add Field</a></li>
 		    </ul>
 		</ul>
