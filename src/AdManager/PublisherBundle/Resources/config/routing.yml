@@ -11,8 +11,8 @@ add_publisher:
     defaults: { _controller: AdManagerPublisherBundle:Publisher:add }
     
 publisher_delete:
-    pattern:  /ad-manager/publisher/delete/{id}
-    defaults: { _controller: AdManagerPublisherBundle:Publisher:delete }
+    pattern:  /ad-manager/publisher/delete/{id}/{confirm}
+    defaults: { _controller: AdManagerPublisherBundle:Publisher:delete, confirm : 0}
     
 ad_manager_ad_homepage:
     pattern:  /ad-manager/ads

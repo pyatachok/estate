@@ -67,17 +67,43 @@ class PublisherController extends Controller
     }
 
     
-    public function deleteAction($id)
+    public function deleteAction($id, $confirm = 0)
     {
 	$publisher = $this->getDoctrine()
 	    ->getRepository('AdManagerPublisherBundle:Publisher')
-	    ->markAsDeleted();
+	    ->find($id);
+	if ($publisher->getDeleted() == 1)
+	{
+	    return $this->redirect($this->generateUrl('ad_manager_publisher_homepage'));
+	}
+	    
+	$request = $this->getRequest();
+	
+	if ($request->getMethod() == 'POST') {
+	    $form = $request->request->get('form');
+	    
+	    if ($form['confirm'] == 1)
+	    {
+		$em = $this->getDoctrine()->getEntityManager();
+		$publisher->setDeleted('1');
+		$em->flush();
+		return $this->redirect($this->generateUrl('ad_manager_publisher_homepage'));
+	    }
+	    
+	} else {
+	    $form = $this->createFormBuilder()
+		->add('confirm', 'checkbox', array('label' => 'Do you realy want to delete user'))
+		->getForm();
+	}
 	
 	if (!$publisher) {
 	    throw $this->createNotFoundException('No publisher found for id = '. $id);
 	}
-	
-	
-        return $this->render('AdManagerPublisherBundle:Publisher:show.html.twig', array('publisher' => $publisher));
+        return $this->render(
+		'AdManagerPublisherBundle:Publisher:delete.html.twig', 
+		array(
+		    'publisher' => $publisher,
+		    'form' =>  $form->createView(),
+		    ));
     }
 }

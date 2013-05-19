@@ -19,20 +19,4 @@ class PublisherRepository extends EntityRepository
             ->getResult();
     }
     
-    public function markAsDeleted()
-    {
-	echo '<pre>';
-	var_export($this->getId());
-	echo '</pre>';
-
-
-
-
-
-//        return $this->getEntityManager()
-//            ->createQuery('UPDATE p FROM AdManagerPublisherBundle:Publisher p SET()')
-//            ->getResult();
-    }
-    
-    
 }

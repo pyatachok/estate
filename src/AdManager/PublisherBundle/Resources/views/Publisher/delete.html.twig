@@ -6,6 +6,13 @@
  <p class='last'>
     Publisher Name = {{ publisher.name }}!
  </p>
+ <form action="{{ path('publisher_delete', {'id':publisher.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+
+    <input type="submit" />
+</form>
+ 
+ 
     {% for ad in publisher.ads %}
 	<div class='ad-details span4 offset1'>
 	    {% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
