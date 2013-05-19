@@ -19,7 +19,7 @@
 	</thead>
 	<tbody>
 	{% for publisher in publishers %}
-	<tr>
+	<tr {% if publisher.deleted == 1 %} {{"class='warning'"}} {% endif %} >
 	    <td>{{publisher.id}}</td>
 	    <td><a href="{{ path('publisher_show', {'id' : publisher.id }) }}">{{ publisher.name }}</a></td>
 	    <td>{% if publisher.deleted == 1 %}Yes{%else%}No{% endif %}</td>
