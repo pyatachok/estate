@@ -14,7 +14,8 @@ class PublisherController extends Controller
     {
 	$publishers = $this->getDoctrine()
 	    ->getRepository('AdManagerPublisherBundle:Publisher')
-	    ->findAll();
+	    ->findAllOrderedByName();
+	
 	
 	if (!$publishers) {
 	    throw $this->createNotFoundException('No publishers found');

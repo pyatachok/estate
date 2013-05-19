@@ -30,7 +30,11 @@ class Field
      */
     protected $name;
 
-    
+    /**
+     * @ORM\Column(type="integer")
+     * @var type 
+     */
+    protected $deleted;
     
     /**
      * @ORM\ManyToMany(targetEntity="Field", mappedBy="relatedFields")
@@ -197,5 +201,28 @@ class Field
     public function getValues()
     {
         return $this->values;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param integer $deleted
+     * @return Field
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return integer 
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }

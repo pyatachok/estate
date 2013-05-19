@@ -40,6 +40,12 @@ class Ad
     protected $publisher_id;
 
     /**
+     * @ORM\Column(type="integer")
+     * @var type 
+     */
+    protected $deleted;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Publisher", inversedBy="ads")
      * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id")
      */
@@ -178,5 +184,28 @@ class Ad
     public function getFieldValues()
     {
         return $this->field_values;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param integer $deleted
+     * @return Ad
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return integer 
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }

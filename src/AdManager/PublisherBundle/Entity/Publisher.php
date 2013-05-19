@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AdManager\PublisherBundle\Entity\PublisherRepository")
  * @ORM\Table(name="publisher")
  */
 class Publisher
@@ -27,6 +27,12 @@ class Publisher
      * @var type 
      */
     protected $name;
+    
+    /**
+     * @ORM\Column(type="integer")
+     * @var type 
+     */
+    protected $deleted;
 
     
     /**
@@ -38,9 +44,6 @@ class Publisher
     {
         $this->ads = new ArrayCollection();
     }
-    
-    
-    
     
     /**
      * Get id
@@ -115,5 +118,28 @@ class Publisher
     {
         $metadata->addPropertyConstraint('name', new NotBlank());
 
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param integer $deleted
+     * @return Publisher
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return integer 
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 }
