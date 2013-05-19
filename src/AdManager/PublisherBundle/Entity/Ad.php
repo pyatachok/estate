@@ -47,7 +47,7 @@ class Ad
 
     
     /**
-     * @ORM\OneToMany(targetEntity="AdFieldValue", mappedBy="ad")
+     * @ORM\OneToMany(targetEntity="AdFieldValue", mappedBy="ad", cascade={"persist"})
      */
     protected $field_values;
     
@@ -154,11 +154,12 @@ class Ad
      */
     public function addFieldValue(\AdManager\PublisherBundle\Entity\AdFieldValue $fieldValues)
     {
+	$fieldValues->setAd($this);
         $this->field_values[] = $fieldValues;
 
         return $this;
     }
-
+    
     /**
      * Remove field_values
      *

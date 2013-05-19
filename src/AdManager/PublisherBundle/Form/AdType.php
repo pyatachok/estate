@@ -22,6 +22,7 @@ class AdType extends AbstractType
 	    'format' => 'yyyy-MM-dd HH:mm:ss',
 	    'data' => new \DateTime("now")
 	    ));
+	
 	$builder->add('publisher', 'entity', array(
 	    'class' => 'AdManagerPublisherBundle:Publisher',
 	    'property' => 'name',
@@ -30,6 +31,7 @@ class AdType extends AbstractType
 	 $builder->add('field_values', 'collection', array(
 	    'type'         => new AdFieldValueType(),
 	    'allow_add'    => true,
+	    'allow_delete' => true,
 	    'by_reference' => false,
 	));
 	
