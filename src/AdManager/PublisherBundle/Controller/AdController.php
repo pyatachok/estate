@@ -13,9 +13,9 @@ class AdController extends Controller
     public function indexAction()
     {
 	$ads = $this->getDoctrine()
-	    ->getRepository('AdManagerPublisherBundle:Ad')
-	    ->findAll();
-	
+		->getRepository('AdManagerPublisherBundle:Ad')
+		->findBy(array(), array('creation_date' => 'DESC'))
+		;
 	if (!$ads) {
 	    throw $this->createNotFoundException('No ads found');
 	}
