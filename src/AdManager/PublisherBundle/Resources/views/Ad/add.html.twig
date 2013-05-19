@@ -13,21 +13,12 @@
     <form action="{{ path('add_ad') }}" method="post" {{ form_enctype(form) }}>
 	{{ form_errors(form) }}
 
+	{{ form_row(form.title) }}
 	{{ form_row(form.creation_date) }}
 	{{ form_row(form.publisher) }}
 
 	<h3>Field values</h3>
-	<ul class="field_values" data-prototype="{{ form_widget(form.field_values.vars.prototype)|e }}">
-	    ...
-	</ul>
-
-{# iterate over each existing tag and render its only field: name #}
-	{# for field_value in form.field_values 
-	    <li>{{ form_row(field_value.value) }}</li>
-	    <li>{{ form_row(field_value.field) }}</li>
-	{% endfor #}
-
-	    
+	<ul class="field_values" data-prototype="{{ form_widget(form.field_values.vars.prototype)|e }}"></ul>
 	{{ form_rest(form) }}
 
 	<input type="submit" />

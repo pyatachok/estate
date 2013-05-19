@@ -46,6 +46,13 @@ class Ad
     protected $deleted;
     
     /**
+     * @ORM\Column(type="string", length=1024)
+     * @var type 
+     */
+    protected $title;
+
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Publisher", inversedBy="ads")
      * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id")
      */
@@ -208,4 +215,28 @@ class Ad
     {
         return $this->deleted;
     }
+    
+    /**
+     * Set title
+     *
+     * @param integer $title
+     * @return Ad
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
 }

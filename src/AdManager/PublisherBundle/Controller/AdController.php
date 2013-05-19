@@ -50,6 +50,7 @@ class AdController extends Controller
 		// выполняем прочие действие, например, сохраняем задачу в базе данных
 		
 		$ad = $form->getData();
+		$ad->setDeleted(0);
 //		$publisher = $this->getDoctrine()
 //		    ->getRepository('AdManagerPublisherBundle:Publisher')
 //		    ->find($ad->getPublisherId());

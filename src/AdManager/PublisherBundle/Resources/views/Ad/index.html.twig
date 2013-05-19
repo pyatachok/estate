@@ -10,10 +10,33 @@
  {% endblock %}
  
  {% block body %}
-    {% for ad in ads %}
-	<h2><a href="{{ path('ad_show', {'id' : ad.id }) }}">{{ ad.CreationDate.format('Y-m-d H:i:s')}}</a></h2>
-	 <div class='ad-details'>
-		{% include 'AdManagerPublisherBundle:Ad:adDetails.html.twig' with {'ad': ad} %}
-	 </div>
-    {% endfor %}
+    <table class="table table-hover">
+	<thead>
+	    <tr>
+		<th>#</th>
+		<th>Title</th>
+		<th>Publisher</th>
+		<th>Creation Date</th>
+		<th>Is Deleted</th>
+		<th>Actions</th>
+	    </tr>
+	</thead>
+	<tbody>
+	{% for ad in ads %}
+		<tr {% if ad.deleted == 1 %} {{"class='warning'"}} {% endif %}>
+		    <td>{{ad.id}}</td>
+		    <td><a href="{{ path('ad_show', {'id' : ad.id }) }}">{{ad.title}}</a></td>
+		    <td>{{ad.getPublisher().getName() }}</td>
+		    <td>{{ad.CreationDate.format('Y-m-d H:i:s') }}</td>
+		    <td>{% if ad.deleted == 1 %}Yes{%else%}No{% endif %}</td>
+		    <td>
+			<a class="btn btn-small" href="{{ path('ad_show', {'id' : ad.id }) }}">Edit</a>
+			{% if ad.deleted ==0 %}
+			    <a  class="btn btn-small" href="{{ path('ad_show', {'id' : ad.id }) }}">Delete</a>
+			{% endif %}
+		    </td>
+		</tr>
+	{% endfor %}
+	</tbody>
+    </table>
  {% endblock %}

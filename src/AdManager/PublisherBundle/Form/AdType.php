@@ -23,6 +23,12 @@ class AdType extends AbstractType
 	    'data' => new \DateTime("now")
 	    ));
 	
+	$builder->add('title', 'textarea', array(
+	    'required' => true, 
+	    'empty_data' => FALSE,
+	    'max_length' => 1024,
+	    ));
+	
 	$builder->add('publisher', 'entity', array(
 	    'class' => 'AdManagerPublisherBundle:Publisher',
 	    'property' => 'name',
@@ -33,6 +39,7 @@ class AdType extends AbstractType
 	    'allow_add'    => true,
 	    'allow_delete' => true,
 	    'by_reference' => false,
+	    'label' => ' '
 	));
 	
     }
