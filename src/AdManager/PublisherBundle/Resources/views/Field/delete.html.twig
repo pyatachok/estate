@@ -1,0 +1,31 @@
+ {# src/AdManager/PublisherBundle/Resources/views/Ad/index.html.twig #}
+ {% extends 'AdManagerPublisherBundle::base.html.twig' %}
+
+ {% block title %}Delete Field #{{ field.id }}{% endblock %}
+ {% block body %}
+<form action="{{ path('field_delete', {'id':field.id}) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" />
+</form>
+<div class='field-details'>
+     {% include 'AdManagerPublisherBundle:Field:fieldDetails.html.twig' with {'field' : field} %}
+ </div>
+ <div class='related-fields'>
+     <p>Related Fields</p>
+     {% for related_field in field.RelatedFields %}
+	<div class='field-details'>
+	    {% include 'AdManagerPublisherBundle:Field:fieldDetails.html.twig' with {'related_field' : related_field, 'field' : null } %}
+	</div>
+ 
+     {% endfor %}
+ </div>
+ <div class='related-fields'>
+     <p>Parent Fields</p>
+     {% for related_field in field.ParentFields %}
+	<div class='field-details'>
+	    {% include 'AdManagerPublisherBundle:Field:fieldDetails.html.twig' with {'related_field' : related_field, 'field' : null } %}
+	</div>
+ 
+     {% endfor %}
+ </div>
+ {% endblock %}

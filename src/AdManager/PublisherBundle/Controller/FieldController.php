@@ -62,5 +62,45 @@ class FieldController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+    public function deleteAction($id, $confirm = 0)
+    {
+	$field = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Field')
+	    ->find($id);
+	if ($field->getDeleted() == 1)
+	{
+	    return $this->redirect($this->generateUrl('ad_manager_field_homepage'));
+	}
+	    
+	$request = $this->getRequest();
+	
+	if ($request->getMethod() == 'POST') {
+	    $form = $request->request->get('form');
+	    
+	    if ($form['confirm'] == 1)
+	    {
+		$em = $this->getDoctrine()->getEntityManager();
+		$field->setDeleted('1');
+		$em->flush();
+		return $this->redirect($this->generateUrl('ad_manager_field_homepage'));
+	    }
+	    
+	} else {
+	    $form = $this->createFormBuilder()
+		->add('confirm', 'checkbox', array('label' => 'Do you realy want to delete field'))
+		->getForm();
+	}
+	
+	if (!$field) {
+	    throw $this->createNotFoundException('No field found for id = '. $id);
+	}
+        return $this->render(
+		'AdManagerPublisherBundle:Field:delete.html.twig', 
+		array(
+		    'field' => $field,
+		    'form' =>  $form->createView(),
+		    ));
+    }
     
 }
