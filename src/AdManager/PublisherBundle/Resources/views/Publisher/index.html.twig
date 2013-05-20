@@ -6,7 +6,9 @@
  {% block stylesheets %}
     {{ parent() }}
  {% endblock %}
- 
+ {% block header_title %}
+    {{ parent() }}
+ {% endblock %}
  {% block body %}
     <table class="table table-hover">
 	<thead>
