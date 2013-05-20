@@ -10,7 +10,29 @@
  {% endblock %}
  
  {% block body %}
-    {% for field in fields %}
-	<h2><a href="{{ path('field_show', {'id' : field.id }) }}">{{ field.name }}</a></h2>
-    {% endfor %}
+    <table class="table table-hover">
+	<thead>
+	    <tr>
+		<th>#</th>
+		<th>Name</th>
+		<th>Is Deleted</th>
+		<th>Actions</th>
+	    </tr>
+	</thead>
+	<tbody>
+	{% for field in fields %}
+	    <tr {% if field.deleted == 1 %} {{"class='warning'"}} {% endif %}>
+		<td>{{field.id}}</td>
+		<td><a href="{{ path('field_show', {'id' : field.id }) }}">{{ field.name }}</a></td>
+		<td>{% if field.deleted == 1 %}Yes{%else%}No{% endif %}</td>
+		<td>
+		    <a class="btn btn-small" href="{{ path('field_show', {'id' : field.id }) }}">Edit</a>
+		    {% if field.deleted ==0 %}
+			<a  class="btn btn-small" href="{{ path('field_delete', {'id' : field.id }) }}">Delete</a>
+		    {% endif %}
+		</td>
+	    </tr>
+	{% endfor %}
+	</tbody>
+    </table>
  {% endblock %}
