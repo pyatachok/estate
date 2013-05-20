@@ -70,4 +70,45 @@ class AdController extends Controller
         ));
     }
     
+    public function deleteAction($id, $confirm = 0)
+    {
+	$ad = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Ad')
+	    ->find($id);
+	if ($ad->getDeleted() == 1)
+	{
+	    return $this->redirect($this->generateUrl('ad_manager_ad_homepage'));
+	}
+	    
+	$request = $this->getRequest();
+	
+	if ($request->getMethod() == 'POST') {
+	    $form = $request->request->get('form');
+	    
+	    if ($form['confirm'] == 1)
+	    {
+		$em = $this->getDoctrine()->getEntityManager();
+		$ad->setDeleted('1');
+		$em->flush();
+		return $this->redirect($this->generateUrl('ad_manager_ad_homepage'));
+	    }
+	    
+	} else {
+	    $form = $this->createFormBuilder()
+		->add('confirm', 'checkbox', array('label' => 'Do you realy want to delete advertisment'))
+		->getForm();
+	}
+	
+	if (!$ad) {
+	    throw $this->createNotFoundException('No ad found for id = '. $id);
+	}
+        return $this->render(
+		'AdManagerPublisherBundle:Ad:delete.html.twig', 
+		array(
+		    'ad' => $ad,
+		    'form' =>  $form->createView(),
+		    ));
+    }
+    
+    
 }
