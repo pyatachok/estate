@@ -31,7 +31,7 @@ class Field
     protected $name;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      * @var type 
      */
     protected $deleted;

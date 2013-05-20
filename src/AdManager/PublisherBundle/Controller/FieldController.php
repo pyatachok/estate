@@ -50,6 +50,7 @@ class FieldController extends Controller
 		// выполняем прочие действие, например, сохраняем задачу в базе данных
 		
 		$field = $form->getData();
+		$field->setDeleted(0);
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($field);
 		$em->flush();
@@ -100,6 +101,42 @@ class FieldController extends Controller
 		array(
 		    'field' => $field,
 		    'form' =>  $form->createView(),
+		    ));
+    }
+    
+    public function editAction($id)
+    {
+	$field = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Field')
+	    ->find($id);
+	
+	if (!$field) {
+	    throw $this->createNotFoundException('No field found for id = '. $id);
+	}
+	
+	$editForm = $this->createForm(new FieldType(), $field);
+	$editForm->add('deleted', 'checkbox', array('label' => 'Is Deleted', 'required' => false,));
+	$request = $this->getRequest();
+	$em = $this->getDoctrine()->getEntityManager();
+	
+	if ($request->getMethod() == 'POST') {
+	    $editForm->bindRequest($request);
+
+	    if ($editForm->isValid()) {
+		$field = $editForm->getData();
+		$field->setDeleted(0);
+		$em->persist($field);
+		$em->flush();
+		
+		return $this->redirect($this->generateUrl('ad_manager_field_homepage'));
+	    }
+	}
+	
+        return $this->render(
+		'AdManagerPublisherBundle:Field:edit.html.twig', 
+		array(
+		    'field' => $field,
+		    'form' =>  $editForm->createView(),
 		    ));
     }
     

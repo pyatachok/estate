@@ -26,7 +26,7 @@
 		<td><a href="{{ path('field_show', {'id' : field.id }) }}">{{ field.name }}</a></td>
 		<td>{% if field.deleted == 1 %}Yes{%else%}No{% endif %}</td>
 		<td>
-		    <a class="btn btn-small" href="{{ path('field_show', {'id' : field.id }) }}">Edit</a>
+		    <a class="btn btn-small" href="{{ path('field_edit', {'id' : field.id }) }}">Edit</a>
 		    {% if field.deleted ==0 %}
 			<a  class="btn btn-small" href="{{ path('field_delete', {'id' : field.id }) }}">Delete</a>
 		    {% endif %}

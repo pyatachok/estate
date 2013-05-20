@@ -51,6 +51,7 @@ class PublisherController extends Controller
 		// выполняем прочие действие, например, сохраняем задачу в базе данных
 		
 		$publisher = $form->getData();
+		$publisher->setDeleted(0);
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($publisher);
 		$em->flush();

@@ -13,7 +13,10 @@ add_publisher:
 publisher_delete:
     pattern:  /ad-manager/publisher/delete/{id}/{confirm}
     defaults: { _controller: AdManagerPublisherBundle:Publisher:delete, confirm : 0}
-    
+
+publisher_edit:
+    pattern:  /ad-manager/publisher/edit/{id}
+    defaults: { _controller: AdManagerPublisherBundle:Publisher:edit}
     
     
 ad_manager_ad_homepage:
@@ -23,16 +26,18 @@ ad_manager_ad_homepage:
 ad_show:
     pattern:  /ad-manager/ad/show/{id}
     defaults: { _controller: AdManagerPublisherBundle:Ad:show }
-
-ad_delete:
-    pattern:  /ad-manager/ad/delete/{id}/{confirm}
-    defaults: { _controller: AdManagerPublisherBundle:Ad:delete, confirm : 0 }
     
 add_ad:
     pattern:  /ad-manager/ad/add
     defaults: { _controller: AdManagerPublisherBundle:Ad:add }
   
+ad_delete:
+    pattern:  /ad-manager/ad/delete/{id}/{confirm}
+    defaults: { _controller: AdManagerPublisherBundle:Ad:delete, confirm : 0 }
   
+ad_edit:
+    pattern:  /ad-manager/ad/edit/{id}
+    defaults: { _controller: AdManagerPublisherBundle:Ad:edit }
   
 ad_manager_field_homepage:
     pattern:  /ad-manager/fields
@@ -48,4 +53,9 @@ add_field:
 field_delete:
     pattern:  /ad-manager/field/delete/{id}/{confirm}
     defaults: { _controller: AdManagerPublisherBundle:Field:delete, confirm : 0 }
+  
+field_edit:
+    pattern:  /ad-manager/field/edit/{id}
+    defaults: { _controller: AdManagerPublisherBundle:Field:edit}
+  
   
