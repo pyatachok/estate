@@ -107,4 +107,40 @@ class PublisherController extends Controller
 		    'form' =>  $form->createView(),
 		    ));
     }
+    
+    public function editAction($id)
+    {
+	$publisher = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Publisher')
+	    ->find($id);
+	
+	if (!$publisher) {
+	    throw $this->createNotFoundException('No publisher found for id = '. $id);
+	}
+	
+	$editForm = $this->createForm(new PublisherType(), $publisher);
+	$editForm->add('deleted', 'checkbox', array('label' => 'Is Deleted', 'required' => false,));
+	$request = $this->getRequest();
+	$em = $this->getDoctrine()->getEntityManager();
+	
+	if ($request->getMethod() == 'POST') {
+	    $editForm->bindRequest($request);
+
+	    if ($editForm->isValid()) {
+		$publisher = $editForm->getData();
+		$publisher->setDeleted(0);
+		$em->persist($publisher);
+		$em->flush();
+		
+		return $this->redirect($this->generateUrl('ad_manager_publisher_homepage'));
+	    }
+	}
+	
+        return $this->render(
+		'AdManagerPublisherBundle:Publisher:edit.html.twig', 
+		array(
+		    'publisher' => $publisher,
+		    'form' =>  $editForm->createView(),
+		    ));
+    }
 }

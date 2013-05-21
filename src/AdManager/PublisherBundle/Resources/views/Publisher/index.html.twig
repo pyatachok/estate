@@ -26,7 +26,7 @@
 	    <td><a href="{{ path('publisher_show', {'id' : publisher.id }) }}">{{ publisher.name }}</a></td>
 	    <td>{% if publisher.deleted == 1 %}Yes{%else%}No{% endif %}</td>
 	    <td>
-		<a class="btn btn-small" href="{{ path('publisher_show', {'id' : publisher.id }) }}">Edit</a>
+		<a class="btn btn-small" href="{{ path('publisher_edit', {'id' : publisher.id }) }}">Edit</a>
 		{% if publisher.deleted ==0 %}
 		    <a class="btn btn-small" href="{{ path('publisher_delete', {'id' : publisher.id }) }}">Delete</a>
 		{% endif %}

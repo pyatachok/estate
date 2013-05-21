@@ -18,15 +18,6 @@ class FieldType extends AbstractType
 	    'max_length' => 255,
 	    ));
 	
-//	$builder->add('users', 'entity', array(
-//	    'class' => 'AdaptiveUserBundle:User',
-//	    'expanded' => true,
-//	    'multiple' => true,
-//	    'query_builder' => function(EntityRepository $er) {
-//		return $er->createQueryBuilder('u')
-//		    ->orderBy('u.username', 'ASC');
-//	    },
-//	));
 	
     $builder->add('related_fields', 'entity', array(
 	'class' => 'AdManagerPublisherBundle:Field',

@@ -29,7 +29,7 @@ class Publisher
     protected $name;
     
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      * @var type 
      */
     protected $deleted;
