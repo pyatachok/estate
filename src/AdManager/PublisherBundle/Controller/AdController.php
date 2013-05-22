@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AdManager\PublisherBundle\Entity\Ad;
 use AdManager\PublisherBundle\Entity\Publisher;
 use AdManager\PublisherBundle\Form\AdType;
+use AdManager\PublisherBundle\Form\AdFieldValueType;
 class AdController extends Controller
 {
     public function indexAction()
@@ -51,11 +52,7 @@ class AdController extends Controller
 		
 		$ad = $form->getData();
 		$ad->setDeleted(0);
-//		$publisher = $this->getDoctrine()
-//		    ->getRepository('AdManagerPublisherBundle:Publisher')
-//		    ->find($ad->getPublisherId());
-//		$ad->setPublisher($publisher);
-		
+
 		$em = $this->getDoctrine()->getEntityManager();
 		$em->persist($ad);
 		$em->flush();
@@ -110,5 +107,57 @@ class AdController extends Controller
 		    ));
     }
     
+    public function editAction($id)
+    {
+	$ad = $this->getDoctrine()
+	    ->getRepository('AdManagerPublisherBundle:Ad')
+	    ->find($id);
+	
+	if (!$ad) {
+	    throw $this->createNotFoundException('No advertisment found for id = '. $id);
+	}
+	
+	$editForm = $this->createForm(new AdType(), $ad);
+	$editForm->add('deleted', 'checkbox', array(
+	    'label' => 'Is Deleted', 
+	    'required' => false,
+	    ));	
+	$request = $this->getRequest();
+	$em = $this->getDoctrine()->getEntityManager();
+	
+	if ($request->getMethod() == 'POST') {
+
+	    $editForm->bindRequest($request);
+	    
+	    {
+		/**
+		 * Составим массив полей объявления до внесения изменений
+		 */
+		
+		$beforUpdateFields = array();
+		foreach ($ad->getFieldValues() as $fieldValue)
+		{
+		    $beforUpdateFields[$fieldValue->getId()] = $fieldValue;
+		}
+	    }
+
+
+	    if ($editForm->isValid()) {
+		$ad = $editForm->getData();
+		$ad->setDeleted(0);
+		$em->persist($ad);
+		$em->flush();
+		
+//		return $this->redirect($this->generateUrl('ad_manager_ad_homepage'));
+	    }
+	}
+	
+        return $this->render(
+		'AdManagerPublisherBundle:Ad:edit.html.twig', 
+		array(
+		    'ad' => $ad,
+		    'form' =>  $editForm->createView(),
+		    ));
+    }
     
 }

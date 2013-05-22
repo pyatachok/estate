@@ -40,7 +40,7 @@ class Ad
     protected $publisher_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      * @var type 
      */
     protected $deleted;

@@ -24,7 +24,8 @@ class AdFieldValueType extends AbstractType
 	    'class' => 'AdManagerPublisherBundle:Field',
 	    'property' => 'name',
 	));
-
+	$builder->add('id', 'hidden', array('required' => false, 'label' => false));
+	
     }
     
     public function getName()

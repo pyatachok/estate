@@ -30,7 +30,7 @@
 		    <td>{{ad.CreationDate.format('Y-m-d H:i:s') }}</td>
 		    <td>{% if ad.deleted == 1 %}Yes{%else%}No{% endif %}</td>
 		    <td>
-			<a class="btn btn-small" href="{{ path('ad_show', {'id' : ad.id }) }}">Edit</a>
+			<a class="btn btn-small" href="{{ path('ad_edit', {'id' : ad.id }) }}">Edit</a>
 			{% if ad.deleted ==0 %}
 			    <a  class="btn btn-small" href="{{ path('ad_delete', {'id' : ad.id }) }}">Delete</a>
 			{% endif %}

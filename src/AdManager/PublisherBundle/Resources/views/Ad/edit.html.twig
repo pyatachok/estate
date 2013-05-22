@@ -1,0 +1,41 @@
+ {# src/AdManager/PublisherBundle/Resources/views/Ad/add.html.twig #}
+ {% extends 'AdManagerPublisherBundle::base.html.twig' %}
+
+ {% block title %}Editing Ad {{ ad.title }}{% endblock %}
+ 
+ {% block stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/admanagerpublisher/css/main.css') }}" type="text/css" rel="stylesheet" />
+ {% endblock %}
+ {% block body %}
+    <form action="{{ path('ad_edit', {'id' : ad.id}) }}" method="post" {{ form_enctype(form) }}>
+	<div class="row span4">
+	    {{ form_errors(form) }}
+	    {{ form_row(form.title) }}
+	    {{ form_row(form.creation_date) }}
+	    <div class="form_row span3">
+		{{ form_row(form.deleted) }}
+	    </div>
+	    {{ form_row(form.publisher) }}
+	    <input type="submit" class="btn btn-small" value="Submit!"/>
+	</div>
+	<div class="row span9">
+	    <h3>Field values</h3>
+	    <ul class="field_values unstyled" data-prototype="{{ form_widget(form.field_values.vars.prototype)|e }}">
+		{% for it in form.field_values %}
+		<li class="row">
+		    {{ form_widget(it) }}
+		</li>
+		{% endfor %}
+	    </ul>
+	    {{ form_rest(form) }}
+	</div>
+    </form>
+ {% endblock %}
+    
+{% block javascripts %}
+{{ parent() }}
+<script src="{{ asset('bundles/admanagerpublisher/js/ad_sub_form.js') }}" type="text/javascript"></script>
+
+{% endblock %}

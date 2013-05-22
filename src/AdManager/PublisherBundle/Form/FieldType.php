@@ -19,11 +19,11 @@ class FieldType extends AbstractType
 	    ));
 	
 	
-    $builder->add('related_fields', 'entity', array(
-	'class' => 'AdManagerPublisherBundle:Field',
-	'property' => 'name',
-	'multiple' => true,
-    ));
+	$builder->add('related_fields', 'entity', array(
+	    'class' => 'AdManagerPublisherBundle:Field',
+	    'property' => 'name',
+	    'multiple' => true,
+	));
 
 	    
 	    
