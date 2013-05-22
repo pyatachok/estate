@@ -11,17 +11,31 @@
  {% block body %}
     {% form_theme form 'AdManagerPublisherBundle:Form:fields.html.twig' %}
     <form action="{{ path('add_ad') }}" method="post" {{ form_enctype(form) }}>
-	{{ form_errors(form) }}
-
-	{{ form_row(form.title) }}
-	{{ form_row(form.creation_date) }}
-	{{ form_row(form.publisher) }}
-
-	<h3>Field values</h3>
-	<ul class="field_values" data-prototype="{{ form_widget(form.field_values.vars.prototype)|e }}"></ul>
-	{{ form_rest(form) }}
-
-	<input type="submit" />
+	<div class="row span9">
+	    {{ form_errors(form) }}
+		<div class="row">
+	    {{ form_row(form.title) }}
+	    <div class=" span6">
+		<div class="row">
+		    {{ form_row(form.creation_date) }}
+		    {{ form_row(form.publisher) }}
+		</div>
+		<div class="row">
+		    <div class="form_row span3">
+		    </div>
+		    <div class="form_row span3">
+			<input type="submit" class="btn " value="Submit!"/>
+		    </div>
+		</div>
+	    </div>
+		</div>
+	</div>
+	<div class="row span9">
+	    <h3>Field values</h3>
+	    <ul class="field_values unstyled" data-prototype="{{ form_widget(form.field_values.vars.prototype)|e }}">
+	    </ul>
+	    {{ form_rest(form) }}
+	</div>
     </form>
  {% endblock %}
     

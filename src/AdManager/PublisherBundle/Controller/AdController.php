@@ -143,16 +143,19 @@ class AdController extends Controller
 	    if ($editForm->isValid()) {
 		$ad = $editForm->getData();
 		
-		$notDeletedIds = array_unique($this->getElementsByarrayIndex($_REQUEST['ad']['field_values'], 'id'));
-
-		foreach($beforUpdateFields as $key => $value)
+		if ( isset($_REQUEST['ad']['field_values']))
 		{
-		    if (!in_array($key, $notDeletedIds))
+		    $notDeletedIds = array_unique($this->getElementsByarrayIndex($_REQUEST['ad']['field_values'], 'id'));
+
+		    foreach($beforUpdateFields as $key => $value)
 		    {
-			$em->remove($value);
+			if (!in_array($key, $notDeletedIds))
+			{
+			    $em->remove($value);
+			}
 		    }
 		}
-		$ad->setDeleted(0);
+//		$ad->setDeleted(0);
 		$em->persist($ad);
 		$em->flush();
 		
