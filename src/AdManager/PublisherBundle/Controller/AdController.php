@@ -116,6 +116,18 @@ class AdController extends Controller
 	if (!$ad) {
 	    throw $this->createNotFoundException('No advertisment found for id = '. $id);
 	}
+
+	{
+	    /**
+	     * Составим массив полей объявления до внесения изменений
+	     */
+
+	    $beforUpdateFields = array();
+	    foreach ($ad->getFieldValues() as $fieldValue)
+	    {
+		$beforUpdateFields[$fieldValue->getId()] = $fieldValue;
+	    }
+	}
 	
 	$editForm = $this->createForm(new AdType(), $ad);
 	$editForm->add('deleted', 'checkbox', array(
@@ -126,29 +138,25 @@ class AdController extends Controller
 	$em = $this->getDoctrine()->getEntityManager();
 	
 	if ($request->getMethod() == 'POST') {
-
 	    $editForm->bindRequest($request);
-	    
-	    {
-		/**
-		 * Составим массив полей объявления до внесения изменений
-		 */
-		
-		$beforUpdateFields = array();
-		foreach ($ad->getFieldValues() as $fieldValue)
-		{
-		    $beforUpdateFields[$fieldValue->getId()] = $fieldValue;
-		}
-	    }
-
 
 	    if ($editForm->isValid()) {
 		$ad = $editForm->getData();
+		
+		$notDeletedIds = array_unique($this->getElementsByarrayIndex($_REQUEST['ad']['field_values'], 'id'));
+
+		foreach($beforUpdateFields as $key => $value)
+		{
+		    if (!in_array($key, $notDeletedIds))
+		    {
+			$em->remove($value);
+		    }
+		}
 		$ad->setDeleted(0);
 		$em->persist($ad);
 		$em->flush();
 		
-//		return $this->redirect($this->generateUrl('ad_manager_ad_homepage'));
+		return $this->redirect($this->generateUrl('ad_manager_ad_homepage'));
 	    }
 	}
 	
@@ -158,6 +166,21 @@ class AdController extends Controller
 		    'ad' => $ad,
 		    'form' =>  $editForm->createView(),
 		    ));
+    }
+    
+    
+    private function getElementsByarrayIndex($array, $whatToFind) 
+    {
+	$return = array();
+	foreach ($array as $value)
+	{
+	    if (!empty($value[$whatToFind]))
+	    {
+		$return[] = $value[$whatToFind];
+	    }
+	}
+	return $return;
+	
     }
     
 }

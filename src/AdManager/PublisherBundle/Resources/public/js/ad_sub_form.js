@@ -54,9 +54,9 @@ jQuery(document).ready(function() {
     // add the "add a tag" anchor and li to the tags ul
     collectionHolder.append($newLinkLi);
 
-    // count the current form inputs we have (e.g. 2), use that as the new
+    // current timestamp, use that as the new
     // index when inserting a new item (e.g. 2)
-    collectionHolder.data('index', collectionHolder.find(':input').length);
+    collectionHolder.data('index', new Date().getTime());
 
     $addTagLink.on('click', function(e) {
         // prevent the link from creating a "#" on the URL
