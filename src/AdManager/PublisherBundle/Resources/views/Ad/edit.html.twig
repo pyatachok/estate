@@ -10,15 +10,25 @@
  {% endblock %}
  {% block body %}
     <form action="{{ path('ad_edit', {'id' : ad.id}) }}" method="post" {{ form_enctype(form) }}>
-	<div class="row span4">
+	<div class="row span9">
 	    {{ form_errors(form) }}
+		<div class="row">
 	    {{ form_row(form.title) }}
-	    {{ form_row(form.creation_date) }}
-	    <div class="form_row span3">
-		{{ form_row(form.deleted) }}
+	    <div class=" span6">
+		<div class="row">
+		    {{ form_row(form.creation_date) }}
+		    {{ form_row(form.publisher) }}
+		</div>
+		<div class="row">
+		    <div class="form_row span3">
+			{{ form_row(form.deleted) }}
+		    </div>
+		    <div class="form_row span3">
+			<input type="submit" class="btn " value="Submit!"/>
+		    </div>
+		</div>
 	    </div>
-	    {{ form_row(form.publisher) }}
-	    <input type="submit" class="btn btn-small" value="Submit!"/>
+		</div>
 	</div>
 	<div class="row span9">
 	    <h3>Field values</h3>
