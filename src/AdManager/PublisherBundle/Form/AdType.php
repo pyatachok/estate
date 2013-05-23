@@ -20,7 +20,7 @@ class AdType extends AbstractType
 	    'empty_value' => array('year' => 'Year', 'month' => 'Month', 'day' => 'Day'),
 	    'required' => true, 
 	    'format' => 'yyyy-MM-dd HH:mm:ss',
-	    'data' => new \DateTime("now")
+//	    'data' => new \DateTime("now")
 	    ));
 	
 	$builder->add('title', 'textarea', array(
